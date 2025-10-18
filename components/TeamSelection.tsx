@@ -1,8 +1,9 @@
 'use client'
 
-import { playersData, Position, Team } from '@/lib/playersData'
+import { Player, Position, Team } from '@/lib/playersData'
 
 interface Props {
+  playersData: Player[]
   teamA: Team
   teamB: Team
   teamAScore: number
@@ -15,6 +16,7 @@ interface Props {
 }
 
 export default function TeamSelection({
+  playersData,
   teamA,
   teamB,
   teamAScore,

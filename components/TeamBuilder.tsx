@@ -1,12 +1,15 @@
 'use client'
 
 import { useState } from 'react'
-import { playersData, Player, Position, Team } from '@/lib/playersData'
+import { playersData as initialPlayersData, Player, Position, Team } from '@/lib/playersData'
 import ParticipantSelection from './ParticipantSelection'
 import TeamSelection from './TeamSelection'
 import TeamActions from './TeamActions'
+import PlayerForm from './PlayerForm'
+import DataManager from './DataManager'
 
 export default function TeamBuilder() {
+  const [playersData, setPlayersData] = useState<Player[]>(initialPlayersData)
   const [selectedParticipants, setSelectedParticipants] = useState<Set<number>>(new Set())
   const [teamA, setTeamA] = useState<Team>({
     top: null,
@@ -28,6 +31,8 @@ export default function TeamBuilder() {
   const [balancePercentage, setBalancePercentage] = useState(0)
   const [isBalanced, setIsBalanced] = useState(true)
   const [targetDiff, setTargetDiff] = useState(2)
+  const [showDataManager, setShowDataManager] = useState(false)
+  const [titleClickCount, setTitleClickCount] = useState(0)
 
   // 팀 점수 계산
   const calculateTeamScore = (team: Team): number => {
@@ -258,17 +263,72 @@ export default function TeamBuilder() {
     updateTeamStats(newTeamA as Team, newTeamB as Team)
   }
 
+  // 플레이어 추가
+  const handleAddPlayer = (newPlayerData: Omit<Player, 'id'>) => {
+    const newId = Math.max(...playersData.map(p => p.id), 0) + 1
+    const newPlayer: Player = {
+      ...newPlayerData,
+      id: newId
+    }
+    setPlayersData([...playersData, newPlayer])
+    alert(`${newPlayer.name} 플레이어가 추가되었습니다!`)
+  }
+
+  // 플레이어 데이터 가져오기
+  const handleImportPlayers = (importedPlayers: Player[]) => {
+    setPlayersData(importedPlayers)
+    // 가져온 데이터에 없는 플레이어는 선택 해제
+    const importedIds = new Set(importedPlayers.map(p => p.id))
+    const newSelectedParticipants = new Set(
+      Array.from(selectedParticipants).filter(id => importedIds.has(id))
+    )
+    setSelectedParticipants(newSelectedParticipants)
+    // 팀 초기화
+    clearTeams()
+  }
+
+  // 이스터에그: 제목 클릭 핸들러
+  const handleTitleClick = () => {
+    const newCount = titleClickCount + 1
+    setTitleClickCount(newCount)
+
+    if (newCount === 5) {
+      setShowDataManager(!showDataManager)
+      setTitleClickCount(0) // 카운트 리셋
+      if (!showDataManager) {
+        console.log('🎉 데이터 관리 패널이 활성화되었습니다!')
+      }
+    } else if (newCount < 5) {
+      console.log(`🔍 ${5 - newCount}번 더...`)
+    }
+  }
+
   return (
     <div className="team-builder">
-      <h2>🏆 5:5 팀 구성</h2>
+      <h2 
+        onClick={handleTitleClick}
+      >
+        🏆 5:5 팀 구성
+      </h2>
+
+      {showDataManager && (
+        <DataManager 
+          playersData={playersData} 
+          onImportPlayers={handleImportPlayers}
+        />
+      )}
+
+      <PlayerForm onAddPlayer={handleAddPlayer} />
 
       <ParticipantSelection
+        playersData={playersData}
         selectedParticipants={selectedParticipants}
         setSelectedParticipants={setSelectedParticipants}
         clearTeams={clearTeams}
       />
 
       <TeamSelection
+        playersData={playersData}
         teamA={teamA}
         teamB={teamB}
         teamAScore={teamAScore}

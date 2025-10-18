@@ -1,14 +1,16 @@
 'use client'
 
-import { playersData } from '@/lib/playersData'
+import { Player } from '@/lib/playersData'
 
 interface Props {
+  playersData: Player[]
   selectedParticipants: Set<number>
   setSelectedParticipants: (participants: Set<number>) => void
   clearTeams: () => void
 }
 
 export default function ParticipantSelection({ 
+  playersData,
   selectedParticipants, 
   setSelectedParticipants,
   clearTeams 
