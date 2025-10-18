@@ -78,7 +78,7 @@ footer {
 /* 참여자 선택 스타일 */
 .participant-selection {
     background: linear-gradient(135deg, #fef5e7, #fdebd0);
-    padding: 25px;
+    padding: 20px;
     border-radius: 15px;
     margin-bottom: 30px;
     border: 2px solid #f39c12;
@@ -86,35 +86,46 @@ footer {
 
 .participant-selection h3 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     color: #d68910;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    line-height: 1.4;
 }
 
 .participant-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 12px;
-    margin-bottom: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 10px;
+    margin-bottom: 15px;
 }
 
 .participant-btn {
     background: white;
     color: #4a5568;
     border: 2px solid #e2e8f0;
-    padding: 12px 16px;
+    padding: 10px 12px;
     border-radius: 10px;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    word-break: keep-all;
 }
 
 .participant-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     border-color: #cbd5e0;
+}
+
+.participant-btn:active {
+    transform: translateY(0);
 }
 
 .participant-btn.selected {
@@ -132,21 +143,26 @@ footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     flex-wrap: wrap;
+    padding-top: 10px;
 }
 
 .small-btn {
     background: linear-gradient(135deg, #f39c12, #e67e22);
     color: white;
     border: none;
-    padding: 8px 16px;
+    padding: 10px 18px;
     border-radius: 6px;
     font-size: 0.9rem;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(243, 156, 18, 0.3);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .small-btn:hover {
@@ -155,18 +171,28 @@ footer {
     background: linear-gradient(135deg, #e67e22, #d35400);
 }
 
+.small-btn:active {
+    transform: translateY(0);
+}
+
 .selected-count {
     background: white;
-    padding: 8px 16px;
+    padding: 10px 16px;
     border-radius: 6px;
-    font-size: 1rem;
+    font-size: 0.95rem;
     color: #4a5568;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
 }
 
 .selected-count strong {
     color: #48bb78;
     font-size: 1.1rem;
+    margin: 0 4px;
 }
 
 .team-selection {
@@ -409,13 +435,147 @@ footer {
 }
 
 @media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    header {
+        padding: 20px 15px;
+        margin-bottom: 20px;
+    }
+    
+    header h1 {
+        font-size: 1.6rem;
+    }
+    
+    header p {
+        font-size: 0.95rem;
+    }
+    
+    .team-builder {
+        padding: 20px 15px;
+    }
+    
+    .team-builder h2 {
+        font-size: 1.4rem;
+        margin-bottom: 20px;
+    }
+    
+    /* 참여자 선택 모바일 최적화 */
+    .participant-selection {
+        padding: 15px;
+    }
+    
+    .participant-selection h3 {
+        font-size: 1.1rem;
+        margin-bottom: 12px;
+    }
+    
+    .participant-grid {
+        grid-template-columns: repeat(auto-fill, minmax(85px, 1fr));
+        gap: 8px;
+        margin-bottom: 12px;
+    }
+    
+    .participant-btn {
+        padding: 8px 6px;
+        font-size: 0.85rem;
+        min-height: 42px;
+        border-radius: 8px;
+    }
+    
+    .participant-actions {
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+    }
+    
+    .small-btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
+    .selected-count {
+        width: 100%;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+    
     .team-actions {
         flex-direction: column;
-        align-items: center;
+        align-items: stretch;
+        gap: 10px;
+    }
+    
+    .balance-input-group {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 15px;
     }
     
     .action-btn {
-        width: 200px;
+        width: 100%;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+    
+    header {
+        padding: 15px 10px;
+        margin-bottom: 15px;
+    }
+    
+    header h1 {
+        font-size: 1.4rem;
+    }
+    
+    header p {
+        font-size: 0.9rem;
+    }
+    
+    .team-builder {
+        padding: 15px 10px;
+    }
+    
+    .team-builder h2 {
+        font-size: 1.2rem;
+    }
+    
+    /* 참여자 선택 작은 화면 최적화 */
+    .participant-selection {
+        padding: 12px;
+    }
+    
+    .participant-selection h3 {
+        font-size: 1rem;
+    }
+    
+    .participant-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 6px;
+    }
+    
+    .participant-btn {
+        padding: 8px 4px;
+        font-size: 0.8rem;
+        min-height: 40px;
+    }
+    
+    .small-btn {
+        font-size: 0.85rem;
+    }
+    
+    .selected-count {
+        font-size: 0.85rem;
+    }
+    
+    .selected-count strong {
+        font-size: 1rem;
     }
 }
 
