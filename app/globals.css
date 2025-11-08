@@ -100,6 +100,10 @@ footer {
     margin-bottom: 15px;
 }
 
+.participant-wrapper {
+    position: relative;
+}
+
 .participant-btn {
     background: white;
     color: #4a5568;
@@ -112,11 +116,101 @@ footer {
     transition: all 0.3s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     min-height: 44px;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     word-break: keep-all;
+}
+
+.player-tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px);
+    background: linear-gradient(135deg, #ffffff 0%, #f7fafc 100%);
+    border-radius: 12px;
+    padding: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    min-width: 180px;
+    animation: tooltipFadeIn 0.2s ease-out;
+    pointer-events: none;
+}
+
+.player-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 8px solid transparent;
+    border-top-color: #ffffff;
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.1));
+}
+
+@keyframes tooltipFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(-8px);
+    }
+}
+
+.tooltip-header {
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #2d3748;
+    text-align: center;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 2px solid #e2e8f0;
+}
+
+.tooltip-content {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.tooltip-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.tooltip-row:hover {
+    background: rgba(66, 153, 225, 0.1);
+    transform: translateX(2px);
+}
+
+.position-label {
+    font-size: 0.9rem;
+    color: #4a5568;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.position-score {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #2d3748;
+    background: linear-gradient(135deg, #4299e1, #667eea);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    min-width: 30px;
+    text-align: right;
 }
 
 .participant-btn:hover {
@@ -484,6 +578,24 @@ footer {
         min-height: 42px;
         border-radius: 8px;
     }
+
+    .player-tooltip {
+        min-width: 160px;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .tooltip-header {
+        font-size: 1rem;
+    }
+
+    .position-label {
+        font-size: 0.85rem;
+    }
+
+    .position-score {
+        font-size: 0.95rem;
+    }
     
     .participant-actions {
         flex-direction: column;
@@ -565,6 +677,31 @@ footer {
         padding: 8px 4px;
         font-size: 0.8rem;
         min-height: 40px;
+    }
+
+    .player-tooltip {
+        min-width: 140px;
+        padding: 8px;
+        font-size: 0.85rem;
+    }
+
+    .tooltip-header {
+        font-size: 0.9rem;
+        padding-bottom: 6px;
+        margin-bottom: 6px;
+    }
+
+    .tooltip-row {
+        padding: 3px 6px;
+        gap: 4px;
+    }
+
+    .position-label {
+        font-size: 0.8rem;
+    }
+
+    .position-score {
+        font-size: 0.9rem;
     }
     
     .small-btn {

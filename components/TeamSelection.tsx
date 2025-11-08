@@ -64,7 +64,7 @@ export default function TeamSelection({
                 <option value="">선택하세요</option>
                 {getAvailablePlayers('A', key).map(player => (
                   <option key={player.id} value={player.id}>
-                    {player.name}
+                    {player.name} ({player[key]}점)
                   </option>
                 ))}
               </select>
@@ -103,7 +103,7 @@ export default function TeamSelection({
                 <option value="">선택하세요</option>
                 {getAvailablePlayers('B', key).map(player => (
                   <option key={player.id} value={player.id}>
-                    {player.name}
+                    {player.name} ({player[key]}점)
                   </option>
                 ))}
               </select>

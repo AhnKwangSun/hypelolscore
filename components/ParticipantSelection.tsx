@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { Player } from '@/lib/playersData'
 
 interface Props {
@@ -15,6 +16,7 @@ export default function ParticipantSelection({
   setSelectedParticipants,
   clearTeams 
 }: Props) {
+  const [hoveredPlayer, setHoveredPlayer] = useState<number | null>(null)
   const toggleParticipant = (playerId: number) => {
     const newSet = new Set(selectedParticipants)
     
@@ -49,13 +51,46 @@ export default function ParticipantSelection({
       <h3>📋 내전 참여자 선택 (10명)</h3>
       <div className="participant-grid">
         {playersData.map(player => (
-          <button
-            key={player.id}
-            className={`participant-btn ${selectedParticipants.has(player.id) ? 'selected' : ''}`}
-            onClick={() => toggleParticipant(player.id)}
+          <div 
+            key={player.id} 
+            className="participant-wrapper"
+            onMouseEnter={() => setHoveredPlayer(player.id)}
+            onMouseLeave={() => setHoveredPlayer(null)}
           >
-            {player.name}
-          </button>
+            <button
+              className={`participant-btn ${selectedParticipants.has(player.id) ? 'selected' : ''}`}
+              onClick={() => toggleParticipant(player.id)}
+            >
+              {player.name}
+            </button>
+            {hoveredPlayer === player.id && (
+              <div className="player-tooltip">
+                <div className="tooltip-header">{player.name}</div>
+                <div className="tooltip-content">
+                  <div className="tooltip-row">
+                    <span className="position-label">🏔️ 탑</span>
+                    <span className="position-score">{player.top}</span>
+                  </div>
+                  <div className="tooltip-row">
+                    <span className="position-label">🌲 정글</span>
+                    <span className="position-score">{player.jungle}</span>
+                  </div>
+                  <div className="tooltip-row">
+                    <span className="position-label">⭐ 미드</span>
+                    <span className="position-score">{player.middle}</span>
+                  </div>
+                  <div className="tooltip-row">
+                    <span className="position-label">🎯 봇</span>
+                    <span className="position-score">{player.bottom}</span>
+                  </div>
+                  <div className="tooltip-row">
+                    <span className="position-label">🛡️ 서포터</span>
+                    <span className="position-score">{player.supports}</span>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
         ))}
       </div>
       <div className="participant-actions">
