@@ -74,7 +74,7 @@ export const playersData: Player[] = [
   { id: 23, name: "소희", top: 0, middle: 3, bottom: 0, supports: 5, jungle: 0, fighting: 4, diceHigh: 5, diceLow: 3, mental: 8, totalScore: 27.5, preferredPosition: ["supports"] },
   { id: 24, name: "코마", top: 0, middle: 0, bottom: 4, supports: 4, jungle: 0, fighting: 4, diceHigh: 5, diceLow: 3, mental: 8, totalScore: 27.5, preferredPosition: ["supports","bottom"] },
   { id: 25, name: "언백", top: 9, middle: 10, bottom: 8, supports: 4.5, jungle: 9, fighting: 4, diceHigh: 5, diceLow: 3, mental: 8, totalScore: 27.5, preferredPosition: ["top", "middle","jungle","bottom"] },
-  { id: 26, name: "J2", top: 6, middle: 8, bottom: 7.5, supports: 9, jungle: 7, fighting: 4, diceHigh: 5, diceLow: 3, mental: 8, totalScore: 27.5, preferredPosition: ["middle", "bottom","jungle","supports"] },
+  { id: 26, name: "J2", top: 6, middle: 8, bottom: 7.5, supports: 9, jungle: 7, fighting: 4, diceHigh: 5, diceLow: 3, mental: 8, totalScore: 27.5, preferredPosition: ["middle", "bottom","jungle"] },
   { id: 27, name: "석환", top: 8, middle: 9, bottom: 8, supports: 4.5, jungle: 8, fighting: 4, diceHigh: 5, diceLow: 3, mental: 8, totalScore: 27.5, preferredPosition: ["middle","top","bottom","jungle"] },
   { id: 28, name: "짜루", top:6, middle: 5, bottom: 5, supports: 6, jungle: 5, fighting: 4, diceHigh: 5, diceLow: 3, mental: 8, totalScore: 27.5, preferredPosition: ["middle","top","bottom","jungle","supports"] },
 ]
